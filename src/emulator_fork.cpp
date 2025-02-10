@@ -68,7 +68,6 @@ void emularorFork(const std::string& name, const std::string& age)
 
             std::this_thread::sleep_for(std::chrono::milliseconds(delay)); // sleep bit before checking again
         }
-
     }
 
     close(master_fd); // close pseudo-terminal
