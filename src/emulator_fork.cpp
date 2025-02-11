@@ -3,8 +3,8 @@
 #include <fcntl.h>
 #include <iostream>
 #include <pty.h>
-#include <thread>
 #include <sys/wait.h>
+#include <thread>
 
 #include "utils.hpp"
 
@@ -78,15 +78,19 @@ int main(int argc, char* argv[])
 {
     if(argc < 3)
     {
-        std::cerr << "ERROR: Name and age are required! Usage: " << argv[0] << " Name Age" << std::endl;
+        std::cerr << "ERROR: Name and age are required! Usage: " << argv[0] << " <Name> <Age>" << std::endl;
         return EXIT_FAILURE;
     }
-
-    std::string name = argv[1];
 
     if(!isNameValid(argv[1]))
     {
         std::cerr << "ERROR: Name is too long! Maximum length is 49 characters." << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    if(!isDigitString(argv[2]))
+    {
+        std::cerr << "ERROR: Age must be a positive integer." << std::endl;
         return EXIT_FAILURE;
     }
 
